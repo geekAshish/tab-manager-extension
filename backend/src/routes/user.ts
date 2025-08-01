@@ -1,5 +1,5 @@
 import express from 'express';
-import { OAuth2Client } from 'google-auth-library';
+import { OAuth2Client, TokenPayload } from 'google-auth-library';
 import User from '../models/User.js';
 
 const router = express.Router();
@@ -11,7 +11,12 @@ router.post('/google-login', async (req, res) => {
     idToken: token,
     audience: process.env.GOOGLE_CLIENT_ID,
   });
-  const { sub, name, email } = ticket.getPayload();
+
+  if (!ticket) {
+    return res.status(401).json({ message: 'Invalid token' });
+  }
+
+  const { sub, name, email } = ticket.getPayload() as TokenPayload;
 
   let user = await User.findOne({ googleId: sub });
   if (!user) {
@@ -20,3 +25,5 @@ router.post('/google-login', async (req, res) => {
 
   res.status(200).json(user);
 });
+
+export default router;
