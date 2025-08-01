@@ -5,12 +5,12 @@ function Popup() {
   const [tabs, setTabs] = useState([]);
   const [user, setUser] = useState(null);
 
-  useEffect(() => {
-    chrome.identity.getAuthToken({ interactive: true }, async (token) => {
-      const res = await axios.post('http://localhost:5000/api/users/google-login', { token });
-      setUser(res.data);
-    });
-  }, []);
+  // useEffect(() => {
+  //   chrome.identity.getAuthToken({ interactive: true }, async (token) => {
+  //     const res = await axios.post('http://localhost:5000/api/users/google-login', { token });
+  //     setUser(res.data);
+  //   });
+  // }, []);
 
   const saveTabs = async () => {
     chrome.tabs.query({}, async (tabList) => {
