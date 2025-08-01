@@ -15,10 +15,14 @@ function Popup() {
   const saveTabs = async () => {
     chrome.tabs.query({}, async (tabList) => {
       const simplifiedTabs = tabList.map(tab => ({ title: tab.title, url: tab.url }));
-      await axios.post('http://localhost:5000/api/tabs/save', {
-        googleId: (user as any)?.googleId,
-        tabs: simplifiedTabs,
-      });
+
+
+      console.log(simplifiedTabs);
+      
+      // await axios.post('http://localhost:5000/api/tabs/save', {
+      //   googleId: (user as any)?.googleId,
+      //   tabs: simplifiedTabs,
+      // });
     });
   };
 

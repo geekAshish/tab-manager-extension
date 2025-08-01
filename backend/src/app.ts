@@ -1,15 +1,14 @@
 import express from 'express';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
+import {config as c} from 'dotenv';
 import cors from 'cors';
 import userRoutes from './routes/user';
 import tabRoutes from './routes/tabs';
 import { connectDB } from './db/connect';
-import { config } from './modules/config/config';
+import { config  } from './modules/config/config';
 
 const PORT = config.get("port");
 
-dotenv.config();
+c();
 
 const app = express();
 app.use(cors());
