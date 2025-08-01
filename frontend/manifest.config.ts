@@ -5,14 +5,24 @@ export default defineManifest({
   manifest_version: 3,
   name: pkg.name,
   version: pkg.version,
+  "description": "Manage tabs with multiple Google accounts",
+  "permissions": ["tabs", "identity"],
+  "oauth2": {
+    "client_id": "GOOGLE_CLIENT_ID.apps.googleusercontent.com",
+    "scopes": ["profile", "email"]
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "16": "icon.png",
+      48: 'public/logo.png',
+    }
+  },
   icons: {
     48: 'public/logo.png',
-  },
-  action: {
-    default_icon: {
-      48: 'public/logo.png',
-    },
-    default_popup: 'src/popup/index.html',
   },
   content_scripts: [{
     js: ['src/content/main.tsx'],
