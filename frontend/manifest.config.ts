@@ -12,12 +12,12 @@ export default defineManifest({
     "scopes": ["profile", "email"]
   },
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "src/background/index.ts",
+    type: "module"
   },
   "action": {
-    "default_popup": "index.html",
+    "default_popup": "src/popup/index.html",
     "default_icon": {
-      "16": "icon.png",
       48: 'public/logo.png',
     }
   },

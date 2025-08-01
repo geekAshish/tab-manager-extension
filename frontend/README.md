@@ -50,3 +50,24 @@ npm run build
 - The CRXJS plugin automatically handles manifest generation
 - Content scripts should be placed in `src/content/`
 - Popup UI should be placed in `src/popup/`
+
+
+## base folder structure
+src/
+├── assets/              # Static assets like icons, images, etc.
+│
+├── background/          # Background service worker (runs continuously)
+│   └── index.ts         # Background logic (e.g., listening to tab changes, auth)
+│
+├── components/          # Reusable React components (used in popup or content)
+│   └── Popup.tsx        # Example: React component for popup UI
+│
+├── content/             # Scripts injected into web pages (content scripts)
+│   ├── views/
+│   │   └── app.tsx      # Content script UI (if injecting React into pages)
+│   └── main.tsx         # Entry point for content script
+│
+├── popup/               # The popup (shows when you click extension icon)
+│   ├── app.tsx          # Main UI component for popup
+│   ├── main.tsx         # Renders `app.tsx` into the DOM
+│   └── index.html       # HTML shell loaded by the popup
